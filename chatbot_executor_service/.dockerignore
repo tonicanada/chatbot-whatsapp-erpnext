@@ -1,0 +1,32 @@
+# Ignorar caché de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignorar el entorno virtual
+venv_app/
+venv/
+
+# Ignorar archivos de configuración y dependencias locales
+.env
+.envrc
+*.env
+
+# Ignorar archivos de logs
+logs/
+*.log
+nohup.out
+
+# Ignorar carpetas de dependencias y archivos de compilación
+node_modules/
+dist/
+build/
+
+# Ignorar archivos de Docker y configuración de contenedores
+.dockerignore
+Dockerfile
+
+# Ignorar archivos de control de versiones
+.git/
+.gitignore

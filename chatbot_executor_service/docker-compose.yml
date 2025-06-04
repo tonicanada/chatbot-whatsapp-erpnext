@@ -1,0 +1,12 @@
+services:
+  flask-app:
+    build: .
+    environment:
+      - DB_HOST=127.0.0.1  # O la IP de tu host
+    container_name: flask-api
+    network_mode: "host"  # Esto hace que el contenedor use la red del host
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    restart: always

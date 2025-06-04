@@ -1,0 +1,36 @@
+services:
+  executor:
+    build:
+      context: ./chatbot_executor_service
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./chatbot_executor_service:/app
+    ports:
+      - "5000:5000"
+    environment:
+      - ENV=development
+  openai-service:
+    build:
+      context: ./chatbot_openai
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./chatbot_openai:/app
+    ports:
+      - "8502:8502"
+    environment:
+      - FLASK_APP=script.py
+      - ENV=development
+  whatsapp-service:
+    build:
+      context: ./chatbot_whatsapp
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./chatbot_whatsapp:/app
+    ports:
+      - "8501:8501"
+    environment:
+      - FLASK_APP=script.py
+      - ENV=development
+    depends_on:
+      - openai-service
+      - executor

@@ -1,0 +1,22 @@
+# Directorios de Python cacheados
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Entorno virtual (no se debe subir)
+venv_app/
+venv
+
+# Archivos de credenciales sensibles
+config/.env
+.env
+google_service_account.json
+datos_empresas.json
+
+# Archivos de Docker que pueden regenerarse
+*.log
+*.pid
+
+# Dependencias compiladas (si usas PyCharm)
+*.idea/

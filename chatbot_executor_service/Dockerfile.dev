@@ -1,0 +1,28 @@
+# Usa una imagen más liviana basada en Python 3.10
+FROM python:3.11
+
+# Define el directorio de trabajo dentro del contenedor
+WORKDIR /app
+
+# Copia solo los archivos necesarios antes de instalar dependencias
+COPY requirements.txt /app/
+
+# Instala dependencias del sistema necesarias para Python (opcional, según tus paquetes)
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Instala las dependencias de Python
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir -r requirements.txt
+
+# Instalar cliente MySQL
+RUN apt-get update && apt-get install -y default-mysql-client
+
+# Copia solo el script de arranque
+COPY entrypoint_dev.sh /app/
+RUN chmod +x /app/entrypoint_dev.sh
+
+EXPOSE 5000
+
+CMD ["/app/entrypoint_dev.sh"]
